@@ -16,7 +16,9 @@ News Clicked View
 ![image](https://github.com/t0turi00/kesa2023/assets/79054967/37577587-f950-45b7-a773-11d561702b80)
 
 
+
 News Clicked view with uutisPlus subscription set to true
+
 ![image](https://github.com/t0turi00/kesa2023/assets/79054967/2b752d0e-40b7-432b-92dc-1ae92ab8b7a4)
 
 
