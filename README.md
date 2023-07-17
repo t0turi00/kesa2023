@@ -5,25 +5,35 @@ Main View
 
 ![image](https://github.com/t0turi00/kesa2023/assets/79054967/0548ecf4-72cd-4e69-b4ce-d8ba74fd5893)
 
+
 Main View Menu Button Clicked
 
 ![image](https://github.com/t0turi00/kesa2023/assets/79054967/5989d570-4e3b-4c75-a164-921761eb4554)
+
 
 News Clicked View
 
 ![image](https://github.com/t0turi00/kesa2023/assets/79054967/37577587-f950-45b7-a773-11d561702b80)
 
+
+News Clicked view with uutisPlus subscription set to true
+![image](https://github.com/t0turi00/kesa2023/assets/79054967/2b752d0e-40b7-432b-92dc-1ae92ab8b7a4)
+
+
 Search
 
 ![image](https://github.com/t0turi00/kesa2023/assets/79054967/2f0bfd1c-d364-4449-92c8-c720b85abdbc)
+
 
 Login view
 
 ![image](https://github.com/t0turi00/kesa2023/assets/79054967/678bec99-1fa6-490c-be45-632be15008a4)
 
+
 Create user view
 
 ![image](https://github.com/t0turi00/kesa2023/assets/79054967/0f2ba076-87fb-4bf8-8048-db1b33a4312f)
+
 
 Created user view
 
