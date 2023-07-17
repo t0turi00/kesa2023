@@ -34,7 +34,8 @@ Login view
 
 Create user view
 
-![image](https://github.com/t0turi00/kesa2023/assets/79054967/0f2ba076-87fb-4bf8-8048-db1b33a4312f)
+![image](https://github.com/t0turi00/kesa2023/assets/79054967/6e812063-050c-4d81-b128-2cb111dd1492)
+
 
 
 Created user view
