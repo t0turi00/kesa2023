@@ -17,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -25,15 +24,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.core.app.ActivityCompat.startActivityForResult
-import androidx.core.graphics.drawable.toDrawable
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import coil.compose.AsyncImage
-import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import com.example.newsapp.*
-import com.example.newsapp.ImageHandler.Data.AddImageToDatabase
 import com.example.newsapp.ImageHandler.Data.AddImageToStorage
 import com.example.newsapp.ImageHandler.Data.Constants.ALL_IMAGES
 import com.example.newsapp.ImageHandler.Data.ImageViewModel
@@ -42,9 +37,6 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ktx.storage
-import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -134,7 +126,7 @@ fun AccountView(userVM: UserViewModel, navController: NavHostController, viewMod
                 userInfoData = data
             }
 
-        if (userInfoData.isNotEmpty()) {
+        if (!userInfoData.contains("null")) {
 
             viewModel.getImageFromDatabase()
 
@@ -211,7 +203,8 @@ fun AccountView(userVM: UserViewModel, navController: NavHostController, viewMod
                 }
 
             }
-        } else {
+        }
+        if(userInfoData.contains("null")){
 
             Column(
                 modifier = Modifier
@@ -225,7 +218,10 @@ fun AccountView(userVM: UserViewModel, navController: NavHostController, viewMod
                 val launcher = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
                     imageUri = uri
                 }
-                Column {
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
                     imageUri?.let { viewModel.addImageToStorage(imageUri!!) }
                     AsyncImage(model = ImageRequest.Builder(LocalContext.current)
                         .data(imageUri)
@@ -234,7 +230,8 @@ fun AccountView(userVM: UserViewModel, navController: NavHostController, viewMod
                         error = painterResource(R.drawable.ic_account),
                         contentDescription = null,
                         contentScale = ContentScale.Crop,
-                        modifier = Modifier.padding(top = 64.dp)
+                        modifier = Modifier
+                            .padding(top = 64.dp)
                             .clip(CircleShape)
                             .width(128.dp)
                             .height(128.dp)
@@ -305,37 +302,44 @@ fun AccountView(userVM: UserViewModel, navController: NavHostController, viewMod
                         Switch(
                             checked = plusUser,
                             onCheckedChange = { plusUser = it },
-                            modifier = Modifier.width(50.dp),
+                            modifier = Modifier.width(80.dp),
                             colors = SwitchDefaults.colors(Color(0xFF93A56A))
                         )
                     }
                 }
 
                 Spacer(modifier = Modifier.size(10.dp))
-                OutlinedButton(
-                    onClick = {
-                        fireStore
-                            .collection("users")
-                            .document(userId?.uid.toString())
-                            .set(user)
-                        FirebaseDatabase.getInstance().getReference("users").database
-                        Thread.sleep(500)
-                        username = ""
-                        fName = ""
-                        lName = ""
-                        streetAddress = ""
-                        postalCode = ""
-                        postalDistrict = ""
-                        plusUser = false
-                        mToast(context)
-                        navController.navigate("home")
-                    },
-                    colors = ButtonDefaults.buttonColors(Color(0xFF99AD6C)),
-                    modifier = Modifier.width(170.dp)
-                ) {
-                    Text(text = "Päivitä käyttäjätiedot", color = Color(0xFF4C5537))
-                }
+                Column() {
+                    OutlinedButton(
+                        onClick = {
+                            fireStore
+                                .collection("users")
+                                .document(userId?.uid.toString())
+                                .set(user)
+                            FirebaseDatabase.getInstance().getReference("users").database
+                            Thread.sleep(500)
+                            username = ""
+                            fName = ""
+                            lName = ""
+                            streetAddress = ""
+                            postalCode = ""
+                            postalDistrict = ""
+                            plusUser = false
+                            mToast(context)
+                            navController.navigate("home")
+                        },
+                        colors = ButtonDefaults.buttonColors(Color(0xFF99AD6C)),
+                        modifier = Modifier.width(170.dp)
+                    ) {
+                        Text(text = "Päivitä käyttäjätiedot", color = Color(0xFF4C5537))
+                    }
 
+                    AddImageToStorage(
+                        addImageToDatabase = { downloadUrl ->
+                            viewModel.addImageToDatabase(downloadUrl)
+                        }
+                    )
+                }
             }
 
             Icon(

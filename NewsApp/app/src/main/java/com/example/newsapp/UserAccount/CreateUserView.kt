@@ -64,7 +64,7 @@ fun CreateUserView(userVM: UserViewModel, navController: NavHostController) {
             OutlinedTextField(
                 value = email,
                 onValueChange = { email = it },
-                label = { Text(text = "Email") }
+                label = { Text(text = "Sähköposti") }
             )
 
             //Login to firebase
@@ -94,7 +94,7 @@ fun CreateUserView(userVM: UserViewModel, navController: NavHostController) {
                     }
                 },
                 onValueChange = { password = it },
-                label = { Text(text = "Password") },
+                label = { Text(text = "Salasana") },
             )
 
             Spacer(modifier = Modifier.size(15.dp))

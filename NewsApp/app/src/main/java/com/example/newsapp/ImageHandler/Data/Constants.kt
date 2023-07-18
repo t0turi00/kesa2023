@@ -7,7 +7,7 @@ object Constants {
     const val IMAGES = "images"
     const val URL = "url"
     const val CREATED_AT = "createdAt"
-     val UID = Firebase.auth.currentUser?.uid.toString() //change later to user's own uid
+     val UID = Firebase.auth.currentUser?.uid.toString() //change to user's own uid
      val IMAGE_NAME = "$UID.jpg"
     const val ALL_IMAGES = "image/*"
 }

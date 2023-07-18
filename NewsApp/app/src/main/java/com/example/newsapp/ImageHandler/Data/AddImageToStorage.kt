@@ -1,6 +1,7 @@
 package com.example.newsapp.ImageHandler.Data
 
 import android.net.Uri
+import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -15,7 +16,7 @@ fun AddImageToStorage(
     addImageToDatabase : (downloadUrl: Uri)->Unit
 ) {
     when (val addImageToStorageResponse = viewModel.addImageToStorageResponse) {
-        is Loading -> ProgressBar()
+        is Loading -> CircularProgressIndicator()
         is Success -> addImageToStorageResponse.data?.let { downloadUrl ->
             LaunchedEffect(downloadUrl) {
                 addImageToDatabase(downloadUrl)
