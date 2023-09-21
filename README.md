@@ -40,5 +40,4 @@ Create user view
 
 Created user view
 
-![image](https://github.com/t0turi00/kesa2023/assets/79054967/c5a7d68c-d1ee-481e-9ef3-9284beb74785)
-
+<img width="298" alt="Kuve" src="https://github.com/t0turi00/kesa2023/assets/79054967/f09bca18-04e2-448e-ac40-f9f435daf089">
